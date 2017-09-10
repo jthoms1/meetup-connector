@@ -1,7 +1,9 @@
 <template>
   <nav>
     <ul id="top-nav">
-      <li><router-link to=''>Link 1</router-link></li>
+      <li v-for="page in pages" :key="page.routeName">
+        <router-link :to="{ name: page.routeName }">{{page.name}}</router-link>
+      </li>
     </ul>
   </nav>
 </template>
@@ -12,6 +14,21 @@ export default {
   data() {
     return {
       msg: 'Welcome to the Meetup Connector',
+      pages: [
+        {
+          name: 'Home',
+          routeName: 'home',
+        }, {
+          name: 'Meetups',
+          routeName: 'meetup-signup',
+        }, {
+          name: 'Sponsors',
+          routeName: 'sponsor-signup',
+        }, {
+          name: 'Speakers',
+          routeName: 'speaker-signup',
+        }
+      ]
     };
   },
 };

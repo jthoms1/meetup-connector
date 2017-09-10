@@ -18,40 +18,47 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'home',
       component: Home,
     },
     {
       path: '/meetup',
+      name: 'meetup-signup',
       component: MeetupSignup,
     },
     {
       path: '/meetup/:id',
+      name: 'meetup-info',
       component: MeetupInfo,
       props: true,
       children: [
         { path: '', component: MeetupHome },
-        { path: 'event/:id', component: MeetupEvent, props: true }
+        { path: 'event/:id', name: 'meetup-event', component: MeetupEvent, props: true }
       ]
     },
     {
       path: '/speaker',
+      name: 'speaker-signup',
       component: SpeakerSignup,
     },
     {
       path: '/speaker/:id',
+      name: 'speaker-info',
       component: SpeakerInfo,
       props: true,
       children: [
         { path: '', component: SpeakerHome },
-        { path: 'presentation/:id', component: SpeakerPresentation, props: true }
+        { path: 'presentation/:id', name: 'speaker-presentation', component: SpeakerPresentation, props: true }
       ]
     },
     {
       path: '/sponsor',
+      name: 'sponsor-signup',
       component: SponsorSignup,
     },
     {
       path: '/sponsor/:id',
+      name: 'sponsor-info',
       component: SponsorInfo,
       props: true,
     },
