@@ -43,33 +43,41 @@ textarea#notes {
     <p></p>
     <h2>Why would I want to speak at MadJS</h2>
     <p></p>
-    <form id='meetup-signup' v-on:submit="speakerSignup">
-      <div class="form-input">
-        <label for="email">Email Address</label>
-        <input v-model.trim="presentation.speakerEmail" id="email" placeholder="johndoe@example.com">
-      </div>
-      <div class="form-input">
-        <label for="name">Name</label>
-        <input v-model.trim="presentation.speakerName" id="name" placeholder="John Doe">
-      </div>
-      <div class="form-input">
-        <label for="length">Presentation Length</label>
-        <input v-model="presentation.length" id="length">
-      </div>
-      <div class="form-input">
-        <label for="date-time">Preferred Time Slot</label>
-        <input v-model="presentation.dateTime" id="date-time">
-      </div>
-      <div class="form-end">
-        <input class="signup-button" type="submit" value="Sign up">
-      </div>
-    </form>
-    <ul v-show="dirty" class="errors">
-      <li v-show="!validation.speakerEmail">- Please provide a valid email address.</li>
-      <li v-show="!validation.speakerName">- Name cannot be empty.</li>
-      <li v-show="!validation.length">- Presentation Length cannot be empty.</li>
-      <li v-show="!validation.dateTime">- Preferred Time Slot cannot be empty.</li>
-    </ul>
+    <div v-show="!submitted">
+      <form id='meetup-signup' v-on:submit="speakerSignup">
+        <div class="form-input">
+          <label for="email">Email Address</label>
+          <input v-model.trim="presentation.speakerEmail" id="email" placeholder="johndoe@example.com">
+        </div>
+        <div class="form-input">
+          <label for="name">Name</label>
+          <input v-model.trim="presentation.speakerName" id="name" placeholder="John Doe">
+        </div>
+        <div class="form-input">
+          <label for="length">Presentation Length</label>
+          <input v-model="presentation.length" id="length">
+        </div>
+        <div class="form-input">
+          <label for="date-time">Preferred Time Slot</label>
+          <input v-model="presentation.dateTime" id="date-time">
+        </div>
+        <div class="form-end">
+          <input class="signup-button" type="submit" value="Sign up">
+        </div>
+      </form>
+      <ul v-show="dirty" class="errors">
+        <li v-show="!validation.speakerEmail">- Please provide a valid email address.</li>
+        <li v-show="!validation.speakerName">- Name cannot be empty.</li>
+        <li v-show="!validation.length">- Presentation Length cannot be empty.</li>
+        <li v-show="!validation.dateTime">- Preferred Time Slot cannot be empty.</li>
+      </ul>
+    </div>
+    <div v-show="submitted">
+      <h2>Thank You!</h2>
+      <p>
+        We will get back to you very soon about your presentation.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -85,6 +93,7 @@ export default {
       this.dirty = true;
       if (this.isValid) {
         this.$store.dispatch('addSpeaker', this.presentation);
+        this.submitted = true;
       }
     }
   },
@@ -92,6 +101,7 @@ export default {
     return {
       msg: 'Speaker Signup',
       dirty: false,
+      submitted: false,
       presentation: {
         speakerEmail: '',
         speakerName: '',

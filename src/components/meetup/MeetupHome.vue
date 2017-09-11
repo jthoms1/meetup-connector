@@ -20,8 +20,7 @@ export default {
   name: 'meetup-home',
   props: ['id'],
   data() {
-    return {
-    };
+    return {};
   },
   created() {
     this.$store.dispatch('getGroupData');

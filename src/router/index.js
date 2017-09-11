@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../components/Home';
-import SpeakerSignup from '../components/speaker/SpeakerSignup';
-import SpeakerHome from '../components/speaker/SpeakerHome';
-import SpeakerInfo from '../components/speaker/SpeakerInfo';
-import SpeakerPresentation from '../components/speaker/SpeakerPresentation';
-import SponsorSignup from '../components/sponsor/SponsorSignup';
-import SponsorInfo from '../components/sponsor/SponsorInfo';
-import MeetupHome from '../components/meetup/MeetupHome';
+
+const Home = () => import('../components/Home');
+const SpeakerSignup = () => import('../components/speaker/SpeakerSignup');
+const SpeakerHome = () => import('../components/speaker/SpeakerHome');
+const SpeakerInfo = () => import('../components/speaker/SpeakerInfo');
+const SpeakerPresentation = () => import('../components/speaker/SpeakerPresentation');
+const SponsorSignup = () => import('../components/sponsor/SponsorSignup');
+const SponsorInfo = () => import('../components/sponsor/SponsorInfo');
+const MeetupHome = () => import('../components/meetup/MeetupHome');
+
 
 Vue.use(Router);
 
