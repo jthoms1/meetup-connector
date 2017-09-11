@@ -84,7 +84,7 @@ export default {
       e.preventDefault();
       this.dirty = true;
       if (this.isValid) {
-        console.log('valid');
+        this.$store.dispatch('addSpeaker', this.presentation);
       }
     }
   },

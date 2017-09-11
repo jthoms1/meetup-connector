@@ -7,10 +7,7 @@ import SpeakerInfo from '../components/speaker/SpeakerInfo';
 import SpeakerPresentation from '../components/speaker/SpeakerPresentation';
 import SponsorSignup from '../components/sponsor/SponsorSignup';
 import SponsorInfo from '../components/sponsor/SponsorInfo';
-import MeetupSignup from '../components/meetup/MeetupSignup';
 import MeetupHome from '../components/meetup/MeetupHome';
-import MeetupInfo from '../components/meetup/MeetupInfo';
-import MeetupEvent from '../components/meetup/MeetupEvent';
 
 Vue.use(Router);
 
@@ -23,18 +20,8 @@ export default new Router({
     },
     {
       path: '/meetup',
-      name: 'meetup-signup',
-      component: MeetupSignup,
-    },
-    {
-      path: '/meetup/:id',
-      name: 'meetup-info',
-      component: MeetupInfo,
-      props: true,
-      children: [
-        { path: '', component: MeetupHome },
-        { path: 'event/:id', name: 'meetup-event', component: MeetupEvent, props: true }
-      ]
+      name: 'meetup-home',
+      component: MeetupHome,
     },
     {
       path: '/speaker',
@@ -43,12 +30,11 @@ export default new Router({
     },
     {
       path: '/speaker/:id',
-      name: 'speaker-info',
       component: SpeakerInfo,
       props: true,
       children: [
-        { path: '', component: SpeakerHome },
-        { path: 'presentation/:id', name: 'speaker-presentation', component: SpeakerPresentation, props: true }
+        { path: '', name: 'speaker-info', component: SpeakerHome },
+        { path: 'presentation/:presentationId', name: 'speaker-presentation', component: SpeakerPresentation, props: true }
       ]
     },
     {

@@ -20,7 +20,7 @@ export default {
           routeName: 'home',
         }, {
           name: 'Meetups',
-          routeName: 'meetup-signup',
+          routeName: 'meetup-home',
         }, {
           name: 'Sponsors',
           routeName: 'sponsor-signup',

@@ -37,7 +37,7 @@ textarea#notes {
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <h2>What is MadJS<h2>
+    <h2>What is MadJS</h2>
     <p></p>
     <h2>Past speaker topics and synopsis</h2>
     <p></p>
@@ -75,9 +75,7 @@ textarea#notes {
 
 
 <script>
-/* eslint-disable */
-const emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-/* eslint-enable */
+import validateEmail from '../../utils/validateEmail';
 
 export default {
   name: 'speaker-signup',
@@ -86,7 +84,7 @@ export default {
       e.preventDefault();
       this.dirty = true;
       if (this.isValid) {
-        console.log('valid');
+        this.$store.dispatch('addSpeaker', this.presentation);
       }
     }
   },
@@ -105,7 +103,7 @@ export default {
   computed: {
     validation() {
       return {
-        speakerEmail: emailRE.test(this.presentation.speakerEmail),
+        speakerEmail: validateEmail(this.presentation.speakerEmail),
         speakerName: !!this.presentation.speakerName,
         length: !!this.presentation.length,
         dateTime: !!this.presentation.dateTime
