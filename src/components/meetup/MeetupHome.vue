@@ -33,4 +33,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+dl {
+  display: block;
+  width: 300px;
+  margin: 30px auto 0;
+  overflow: hidden;
+}
+dt {
+  width: 150px;
+  text-align: right;
+  float: left;
+  clear: left;
+}
+dt::after {
+  content: ':'
+}
+dd {
+  float: left;
+  margin-left: 20px;
+}
 </style>
